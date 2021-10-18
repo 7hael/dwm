@@ -1,14 +1,14 @@
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
-static unsigned int borderpx  = 1;        /* border pixel of windows */
-static unsigned int gappx     = 5;        /* gaps between windows */
-static const unsigned int snap      = 32;       /* snap pixel */
-static int showbar            = 1;        /* 0 means no bar */
-static int topbar             = 1;        /* 0 means bottom bar */
-static char font[]            = "monospace:size=10";
-static char dmenufont[]       = "monospace:size=10";
-static const char *fonts[]          = { font };
+static unsigned int borderpx  = 2;        /* border pixel of windows */
+static unsigned int gappx      = 8;        /* gaps between windows */
+static const unsigned int snap = 32;       /* snap pixel */
+static int showbar             = 1;        /* 0 means no bar */
+static int topbar              = 1;        /* 0 means bottom bar */
+static char font[]             = "IBM Plex Mono:size=12";
+static char dmenufont[]        = "IBM Plex Mono:size=12";
+static const char *fonts[]     = { font };
 static char normbgcolor[]           = "#222222";
 static char normbordercolor[]       = "#444444";
 static char normfgcolor[]           = "#bbbbbb";
@@ -23,7 +23,7 @@ static char *colors[][3] = {
 
 /* tagging */
 static const char *tags[] = { "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX" };
-static const char *tagsalt[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
+static const char *tagsalt[] = { "dev", "ww0", "ww1", "fm", "up", "st", "rt0", "rt1", "tns" };
 static const int momentaryalttags = 0; /* 1 means alttags will show only when key is held down*/
 
 static const Rule rules[] = {
@@ -31,9 +31,12 @@ static const Rule rules[] = {
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class      instance    title       tags mask     iscentered   isfloating   monitor */
-	{ "Gimp",     NULL,       NULL,       0,            0,           1,           -1 },
-	{ "Firefox",  NULL,       NULL,       0,            0,           0,           -1 },
+        /* class               instance             title                 tags mask     iscentered     isfloating   monitor */
+        { "Gimp",              NULL,                NULL,                 0,            1,             1,           -1 },
+        { "Firefox",           NULL,                NULL,                 0,            0,             0,           -1 },
+        { "JetBrains Toolbox", "jetbrains-toolbox", "JetBrains Toolbox",  0,            1,             1,           -1 },
+        { "Alacritty",         "Alacritty",         NULL,                 0,            1,             0,           -1 },
+        { "pulsemixer",        "Alacritty",         "pulsemixer",         0,            1,             1,           -1 },
 };
 
 /* layout(s) */
@@ -63,33 +66,55 @@ static const Layout layouts[] = {
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbordercolor, "-sf", selfgcolor, NULL };
-static const char *termcmd[]  = { "st", NULL };
+static const char *termcmd[]        = { "alacritty", NULL };
+static const char *firefoxcmd[]     = { "firefox", NULL };
+static const char *thunarcmd[]      = { "thunar", NULL };
+static const char *rangercmd[]      = { "alacritty", "-c", "ranger", "-e", "ranger", NULL };
+static const char *telegramcmd[]    = { "telegram-desktop", NULL };
+static const char *kdeconnectcmd[]  = { "kdeconnect-settings", NULL };
+static const char *mixercmd[]       = { "alacritty", "-c", "pulsemixer", "-e", "pulsemixer", NULL };
+static const char *screenshotcmd[]  = { "scrot", "-q 100", NULL };
+static const char *yt_mpvcmd[]      = { "yt-mpv", NULL };
+
+/* volume control */
+static const char *upvolcmd[]   = { "pulsemixer", "--change-volume", "+1",     NULL };
+static const char *downvolcmd[] = { "pulsemixer", "--change-volume", "-1",     NULL };
+static const char *mutecmd[] = { "pulsemixer", "--toggle-mute", NULL };
+
+/* screen backlight control */
+static const char *upblcmd[]   = { "xbacklight", "-inc", "5", NULL };
+static const char *downblcmd[] = { "xbacklight", "-dec", "5", NULL };
 
 /*
  * Xresources preferences to load at startup
  */
 ResourcePref resources[] = {
-		{ "font",               STRING,  &font },
-		{ "dmenufont",          STRING,  &dmenufont },
-		{ "normbgcolor",        STRING,  &normbgcolor },
-		{ "normbordercolor",    STRING,  &normbordercolor },
-		{ "normfgcolor",        STRING,  &normfgcolor },
-		{ "selbgcolor",         STRING,  &selbgcolor },
-		{ "selbordercolor",     STRING,  &selbordercolor },
-		{ "selfgcolor",         STRING,  &selfgcolor },
-		{ "borderpx",          	INTEGER, &borderpx },
-		{ "snap",          		INTEGER, &snap },
-		{ "showbar",          	INTEGER, &showbar },
-		{ "topbar",          	INTEGER, &topbar },
-		{ "nmaster",          	INTEGER, &nmaster },
-		{ "resizehints",       	INTEGER, &resizehints },
-		{ "mfact",      	 	FLOAT,   &mfact },
+		{ "color0",          STRING,  &normbgcolor },
+		{ "color0",          STRING,  &normbordercolor },
+		{ "color6",          STRING,  &normfgcolor },
+		{ "color13",          STRING,  &selbgcolor },
+		{ "color14",         STRING,  &selbordercolor },
+		{ "color0",          STRING,  &selfgcolor },
+		{ "dwm.showbar",     INTEGER, &showbar },
+		{ "dwm.topbar",      INTEGER, &topbar },
+		{ "dwm.nmaster",     INTEGER, &nmaster },
+		{ "dwm.resizehints", INTEGER, &resizehints },
+		{ "dwm.mfact",       FLOAT,   &mfact },
 };
 
+#include <X11/XF86keysym.h>
 static Key keys[] = {
 	/* modifier                     key        function        argument */
-	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
-	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
+	{ MODKEY|ShiftMask,            	XK_d,      spawn,          {.v = dmenucmd } },
+	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
+    { MODKEY|ShiftMask,				XK_f,	   spawn, 		   {.v = firefoxcmd } },
+    { MODKEY|ShiftMask,			    XK_e,	   spawn,  		   {.v = thunarcmd } },
+    { MODKEY|ShiftMask,             XK_t,	   spawn,  		   {.v = telegramcmd } },
+    { MODKEY,                       XK_r,      spawn,          {.v = rangercmd } },
+    { MODKEY|ControlMask,           XK_k,      spawn,          {.v = kdeconnectcmd } },
+    { MODKEY|ShiftMask,             XK_m,      spawn,          {.v = mixercmd } },
+    { MODKEY,                       XK_y,      spawn,          {.v = yt_mpvcmd } },
+    { MODKEY,                       XK_s,      spawn,          {.v = screenshotcmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
@@ -100,7 +125,9 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_h,      setcfact,       {.f = +0.25} },
 	{ MODKEY|ShiftMask,             XK_l,      setcfact,       {.f = -0.25} },
 	{ MODKEY|ShiftMask,             XK_o,      setcfact,       {.f =  0.00} },
-	{ MODKEY,                       XK_Return, zoom,           {0} },
+    { MODKEY|ShiftMask,             XK_j,      pushdown,       {0} },
+    { MODKEY|ShiftMask,             XK_k,      pushup,         {0} },
+	{ MODKEY|ShiftMask,             XK_Return, zoom,           {0} },
 	{ MODKEY,                       XK_Tab,    view,           {0} },
 	{ MODKEY|ShiftMask,             XK_c,      killclient,     {0} },
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
@@ -120,8 +147,8 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_Left,   tagtoprev,      {0} },
 	{ MODKEY,                       XK_n,      togglealttag,   {0} },
 	{ MODKEY,                       XK_minus,  setgaps,        {.i = -1 } },
-	{ MODKEY,                       XK_equal,  setgaps,        {.i = +1 } },
-	{ MODKEY|ShiftMask,             XK_equal,  setgaps,        {.i = 0  } },
+	{ MODKEY,                       XK_plus,   setgaps,        {.i = +1 } },
+	{ MODKEY|ShiftMask,             XK_minus,  setgaps,        {.i = 0  } },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
@@ -132,6 +159,11 @@ static Key keys[] = {
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
+    { 0,                            XF86XK_AudioRaiseVolume,  spawn,          {.v = upvolcmd } },
+    { 0,                            XF86XK_AudioLowerVolume,  spawn,          {.v = downvolcmd } },
+    { 0,                            XF86XK_AudioMute,         spawn,          {.v = mutecmd } },
+	{ 0,                            XF86XK_MonBrightnessUp,   spawn,          {.v = upblcmd } },
+	{ 0,                            XF86XK_MonBrightnessDown, spawn,          {.v = downblcmd } },
 };
 
 /* button definitions */
