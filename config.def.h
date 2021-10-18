@@ -23,8 +23,8 @@ static char *colors[][3] = {
 
 /* tagging */
 static const char *tags[] = { "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX" };
-static const char *tagsalt[] = { "dev", "ww0", "ww1", "fm", "up", "st", "rt0", "rt1", "tns" };
-static const int momentaryalttags = 0; /* 1 means alttags will show only when key is held down*/
+static const char *tagsalt[] = { "📃", "📃", "🌐", "💾", "🎥", "🎮", "⚙️", "💬", "🎵" };
+static const int momentaryalttags = 1; /* 1 means alttags will show only when key is held down*/
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -69,10 +69,10 @@ static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont,
 static const char *termcmd[]        = { "alacritty", NULL };
 static const char *firefoxcmd[]     = { "firefox", NULL };
 static const char *thunarcmd[]      = { "thunar", NULL };
-static const char *rangercmd[]      = { "alacritty", "-c", "ranger", "-e", "ranger", NULL };
+static const char *rangercmd[]      = { "alacritty", "-e", "ranger", NULL };
 static const char *telegramcmd[]    = { "telegram-desktop", NULL };
 static const char *kdeconnectcmd[]  = { "kdeconnect-settings", NULL };
-static const char *mixercmd[]       = { "alacritty", "-c", "pulsemixer", "-e", "pulsemixer", NULL };
+static const char *mixercmd[]       = { "alacritty", "-e", "pulsemixer", NULL };
 static const char *screenshotcmd[]  = { "scrot", "-q 100", NULL };
 static const char *yt_mpvcmd[]      = { "yt-mpv", NULL };
 
@@ -91,8 +91,8 @@ static const char *downblcmd[] = { "xbacklight", "-dec", "5", NULL };
 ResourcePref resources[] = {
 		{ "color0",          STRING,  &normbgcolor },
 		{ "color0",          STRING,  &normbordercolor },
-		{ "color6",          STRING,  &normfgcolor },
-		{ "color13",          STRING,  &selbgcolor },
+		{ "color13",          STRING,  &normfgcolor },
+		{ "color6",         STRING,  &selbgcolor },
 		{ "color14",         STRING,  &selbordercolor },
 		{ "color0",          STRING,  &selfgcolor },
 		{ "dwm.showbar",     INTEGER, &showbar },
