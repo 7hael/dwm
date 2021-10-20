@@ -23,7 +23,7 @@ static char *colors[][3] = {
 
 /* tagging */
 static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
-static const char *tagsalt[] = { "📃", "📃", "🌐", "💾", "🎥", "🎮", "⚙️", "💬", "🎵" };
+static const char *tagsalt[] = { "🗒", "🗒", "🕸", "🗄", "📽", "🎮", "⚙️", "🖃", "🎵" };
 static const int momentaryalttags = 0; /* 1 means alttags will show only when key is held down*/
 
 static const Rule rules[] = {
