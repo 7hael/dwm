@@ -22,9 +22,9 @@ static char *colors[][3] = {
 };
 
 /* tagging */
-static const char *tags[] = { "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX" };
-static const char *tagsalt[] = { "📃", "📃", "🌐", "💾", "🎥", "🎮", "⚙️", "💬", "🎵" };
-static const int momentaryalttags = 1; /* 1 means alttags will show only when key is held down*/
+static const char *tags[] = { "📃", "📃", "🌐", "💾", "🎥", "🎮", "⚙️", "💬", "🎵" };
+static const char *tagsalt[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
+static const int momentaryalttags = 0; /* 1 means alttags will show only when key is held down*/
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -89,17 +89,17 @@ static const char *downblcmd[] = { "xbacklight", "-dec", "5", NULL };
  * Xresources preferences to load at startup
  */
 ResourcePref resources[] = {
-		{ "color0",          STRING,  &normbgcolor },
-		{ "color0",          STRING,  &normbordercolor },
-		{ "color13",          STRING,  &normfgcolor },
-		{ "color6",         STRING,  &selbgcolor },
-		{ "color14",         STRING,  &selbordercolor },
-		{ "color0",          STRING,  &selfgcolor },
-		{ "dwm.showbar",     INTEGER, &showbar },
-		{ "dwm.topbar",      INTEGER, &topbar },
-		{ "dwm.nmaster",     INTEGER, &nmaster },
-		{ "dwm.resizehints", INTEGER, &resizehints },
-		{ "dwm.mfact",       FLOAT,   &mfact },
+		{ "dwm.normbgcolor",     STRING,  &normbgcolor },
+		{ "dwm.normbordercolor", STRING,  &normbordercolor },
+		{ "dwm.normfgcolor",     STRING,  &normfgcolor },
+		{ "dwm.selbgcolor",      STRING,  &selbgcolor },
+		{ "dwm.selbordercolor",  STRING,  &selbordercolor },
+		{ "dwm.selfgcolor",      STRING,  &selfgcolor },
+		{ "dwm.showbar",         INTEGER, &showbar },
+		{ "dwm.topbar",          INTEGER, &topbar },
+		{ "dwm.nmaster",         INTEGER, &nmaster },
+		{ "dwm.resizehints",     INTEGER, &resizehints },
+		{ "dwm.mfact",           FLOAT,   &mfact },
 };
 
 #include <X11/XF86keysym.h>
@@ -141,10 +141,10 @@ static Key keys[] = {
 	{ MODKEY,                       XK_period,                focusmon,       {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_comma,                 tagmon,         {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_period,                tagmon,         {.i = +1 } },
-	{ MODKEY,                       XK_Right,                 viewnext,       {0} },
-	{ MODKEY,                       XK_Left,                  viewprev,       {0} },
-	{ MODKEY|ShiftMask,             XK_Right,                 tagtonext,      {0} },
-	{ MODKEY|ShiftMask,             XK_Left,                  tagtoprev,      {0} },
+	{ MODKEY|ControlMask,           XK_l,                     viewnext,       {0} },
+	{ MODKEY|ControlMask,           XK_h,                     viewprev,       {0} },
+	{ MODKEY|ControlMask|ShiftMask, XK_l,                     tagtonext,      {0} },
+	{ MODKEY|ControlMask|ShiftMask, XK_h,                     tagtoprev,      {0} },
 	{ MODKEY,                       XK_n,                     togglealttag,   {0} },
 	{ MODKEY,                       XK_minus,                 setgaps,        {.i = -1 } },
 	{ MODKEY,                       XK_plus,                  setgaps,        {.i = +1 } },
