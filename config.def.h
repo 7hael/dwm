@@ -98,6 +98,8 @@ ResourcePref resources[] = {
 		{ "dwm.showbar",         INTEGER, &showbar },
 		{ "dwm.topbar",          INTEGER, &topbar },
 		{ "dwm.nmaster",         INTEGER, &nmaster },
+		{ "dwm.borderpx",        INTEGER, &borderpx },
+		{ "dwm.gappx",           INTEGER, &gappx },
 		{ "dwm.resizehints",     INTEGER, &resizehints },
 		{ "dwm.mfact",           FLOAT,   &mfact },
 };
