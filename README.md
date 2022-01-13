@@ -19,7 +19,10 @@ My build of the dynamic window manager by [Suckless](https://suckless.org)
 
 ## Requirements
 In order to build dwm you need the Xlib header files.
-
+To run this build without any font issue you need to install:
+ - `ttf-fira-code`
+ - `ttf-material-design-icons-extended`
+ - `libxft-bgra` (important)
 
 ## Installation
 Edit config.mk to match your local setup (dwm is installed into
