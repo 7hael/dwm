@@ -33,11 +33,16 @@ static const Rule rules[] = {
 	 *	WM_NAME(STRING) = title
 	 */
         /* class               instance             title                 tags mask     iscentered     isfloating   monitor */
-        { "Gimp",              NULL,                NULL,                 0,            1,             1,           -1 },
-        { "Firefox",           NULL,                NULL,                 0,            0,             0,           -1 },
-        { "JetBrains Toolbox", "jetbrains-toolbox", "JetBrains Toolbox",  0,            1,             1,           -1 },
+        { "JetBrains Toolbox", "jetbrains-toolbox", "JetBrains Toolbox",  1 << 0,       1,             1,           -1 },
+        { "firefox",           NULL,                NULL,                 1 << 2,       0,             0,           -1 },
+        { "mpv",               NULL,                NULL,                 1 << 4,       0,             0,           -1 },
+        { "Steam",             NULL,                NULL,                 1 << 5,       0,             0,           -1 },
+        { "carla",		       NULL,                NULL,                 1 << 6,       0,             0,           -1 },
+        { "Thunderbird",       NULL,                NULL,                 1 << 7,       0,             0,           -1 },
+        { "TelegramDesktop",   NULL,                NULL,                 1 << 7,       0,             0,           -1 },
         { "Alacritty",         "Alacritty",         NULL,                 0,            1,             0,           -1 },
-        { "pulsemixer",        "Alacritty",         "pulsemixer",         0,            1,             1,           -1 },
+        { "Alacritty",         "Alacritty",         "pulsemixer",         0,            1,             1,           -1 },
+        { "Gimp",              NULL,                NULL,                 0,            1,             1,           -1 },
 };
 
 /* layout(s) */
