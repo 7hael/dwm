@@ -80,7 +80,7 @@ static const char *telegramcmd[]    = { "telegram-desktop", NULL };
 static const char *kdeconnectcmd[]  = { "kdeconnect-settings", NULL };
 static const char *mixercmd[]       = { "alacritty", "-e", "pulsemixer", NULL };
 static const char *screenshotcmd[]  = { "scrot", "-q 100", NULL };
-static const char *yt_mpvcmd[]      = { "yt-mpv", NULL };
+static const char *ytcmd[]          = { "ytfzf", "-D", NULL };
 
 /* volume control */
 static const char *upvolcmd[]   = { "pulsemixer", "--change-volume", "+1",     NULL };
@@ -121,7 +121,7 @@ static Key keys[] = {
     { MODKEY,                       XK_r,                     spawn,          {.v = rangercmd } },
     { MODKEY|ControlMask,           XK_k,                     spawn,          {.v = kdeconnectcmd } },
     { MODKEY|ShiftMask,             XK_m,                     spawn,          {.v = mixercmd } },
-    { MODKEY,                       XK_y,                     spawn,          {.v = yt_mpvcmd } },
+    { MODKEY,                       XK_y,                     spawn,          {.v = ytcmd } },
     { MODKEY,                       XK_s,                     spawn,          {.v = screenshotcmd } },
 	{ MODKEY,                       XK_b,                     togglebar,      {0} },
 	{ MODKEY,                       XK_j,                     focusstack,     {.i = +1 } },
