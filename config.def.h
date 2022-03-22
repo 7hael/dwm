@@ -121,7 +121,7 @@ static Key keys[] = {
     { MODKEY,                       XK_r,                     spawn,          {.v = rangercmd } },
     { MODKEY|ControlMask,           XK_k,                     spawn,          {.v = kdeconnectcmd } },
     { MODKEY|ShiftMask,             XK_m,                     spawn,          {.v = mixercmd } },
-    { MODKEY,                       XK_y,                     spawn,          {.v = ytcmd } },
+    { MODKEY|ShiftMask,             XK_y,                     spawn,          {.v = ytcmd } },
     { MODKEY,                       XK_s,                     spawn,          {.v = screenshotcmd } },
 	{ MODKEY,                       XK_b,                     togglebar,      {0} },
 	{ MODKEY,                       XK_j,                     focusstack,     {.i = +1 } },
