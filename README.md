@@ -16,7 +16,8 @@ My build of the dynamic window manager by [Suckless](https://suckless.org)
 12. [setborderspx](https://dwm.suckless,org/patches/setborderspx);
 13. [xresources](https://dwm.suckless.org/patches/xresources);
 14. [pertag](https://dwm.suckless.org/patches/pertag);
-14. [removeborder](https://dwm.suckless.org/patches/removeborder);
+15. [removeborder](https://dwm.suckless.org/patches/removeborder);
+16. [bartabgroups](https://dwm.suckless.org/patches/bartabgroups);
 
 ## Requirements
 In order to build dwm you need the Xlib header files.
