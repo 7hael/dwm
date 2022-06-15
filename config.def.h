@@ -10,18 +10,28 @@ static char tfont[]             = "Fira Code:size=11";
 static char efont[]             = "Material Design Icons-Regular:size=10";
 static char dmenufont[]        = "Fira Code:size=11";
 static const char *fonts[]     = { tfont, efont };
-static char normbgcolor[]           = "#222222";
-static char normbordercolor[]       = "#444444";
-static char normfgcolor[]           = "#bbbbbb";
-static char selfgcolor[]            = "#eeeeee";
-static char selbordercolor[]        = "#005577";
-static char selbgcolor[]            = "#005577";
+static char normbgcolor[]      = "#222222";
+static char normbordercolor[]  = "#444444";
+static char normfgcolor[]      = "#bbbbbb";
+static char selfgcolor[]       = "#eeeeee";
+static char selbordercolor[]   = "#005577";
+static char selbgcolor[]       = "#005577";
+//TODO: replace default color
+static char col_gray1[]  = "#222222";
+static char col_gray3[]  = "#bbbbbb";
+static char col_gray4[]  = "#eeeeee";
+static char col_cyan[]   = "#005577";
 static char *colors[][3] = {
-       /*                      fg           bg           border   */
-       [SchemeNorm]        = { normfgcolor, normbgcolor, normbordercolor },
-       [SchemeSel]         = { selfgcolor,  selbgcolor,  selbordercolor  },
-	   [SchemeTabActive]   = { normfgcolor, normbgcolor, normbordercolor },
-	   [SchemeTabInactive] = { normfgcolor, normbgcolor, normbordercolor }
+    /*                      fg           bg           border   */
+	[SchemeNorm]        = { normfgcolor, normbgcolor, normbordercolor },
+    [SchemeSel]         = { selfgcolor,  selbgcolor,  selbordercolor  },
+    [SchemeTabActive]   = { normfgcolor, normbgcolor, normbordercolor },
+    [SchemeTabInactive] = { normfgcolor, normbgcolor, normbordercolor },
+    [SchemeStatus]  	= { col_gray3, col_gray1,  "#000000"  }, // Statusbar right {text,background,not used but cannot be empty}
+    [SchemeTagsSel]  	= { col_gray4, col_cyan,  "#000000"  }, // Tagbar left selected {text,background,not used but cannot be empty}
+    [SchemeTagsNorm]  	= { col_gray3, col_gray1,  "#000000"  }, // Tagbar left unselected {text,background,not used but cannot be empty}
+    [SchemeInfoSel]  	= { col_gray4, col_cyan,  "#000000"  }, // infobar middle  selected {text,background,not used but cannot be empty}
+    [SchemeInfoNorm]  	= { col_gray3, col_gray1,  "#000000"  } // infobar middle  unselected {text,background,not used but cannot be empty}
 };
 
 /* tagging */
