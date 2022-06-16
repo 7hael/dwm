@@ -18,11 +18,13 @@ My build of the dynamic window manager by [Suckless](https://suckless.org)
 14. [pertag](https://dwm.suckless.org/patches/pertag);
 15. [removeborder](https://dwm.suckless.org/patches/removeborder);
 16. [bartabgroups](https://dwm.suckless.org/patches/bartabgroups);
+17. [colorbar](https://dwm.suckless.org/patches/colorbar);
+18. [statuscolor](https://dwm.suckless.org/patches/statuscolors);
 
 ## Requirements
 In order to build dwm you need the Xlib header files.
 To run this build without any font issue you need to install:
- - `ttf-fira-code`
+ - `ttf-iosevka-nerd`
  - `ttf-material-design-icons-extended`
  - `libxft-bgra` (important)
 
