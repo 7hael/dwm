@@ -1,7 +1,7 @@
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
-static unsigned int borderpx  = 2;        /* border pixel of windows */
+static unsigned int borderpx   = 2;        /* border pixel of windows */
 static unsigned int gappx      = 16;        /* gaps between windows */
 static const unsigned int snap = 8;       /* snap pixel */
 static int showbar             = 1;        /* 0 means no bar */
@@ -21,6 +21,10 @@ static char col_gray1[]  = "#222222";
 static char col_gray3[]  = "#bbbbbb";
 static char col_gray4[]  = "#eeeeee";
 static char col_cyan[]   = "#005577";
+static char col_black[]       = "#000000";
+static char col_red[]         = "#ff0000";
+static char col_yellow[]      = "#ffff00";
+static char col_white[]       = "#ffffff";
 static char *colors[][3] = {
     /*                      fg           bg           border   */
 	[SchemeNorm]        = { normfgcolor, normbgcolor, normbordercolor },
@@ -31,7 +35,9 @@ static char *colors[][3] = {
     [SchemeTagsSel]  	= { col_gray4, col_cyan,  "#000000"  }, // Tagbar left selected {text,background,not used but cannot be empty}
     [SchemeTagsNorm]  	= { col_gray3, col_gray1,  "#000000"  }, // Tagbar left unselected {text,background,not used but cannot be empty}
     [SchemeInfoSel]  	= { col_gray4, col_cyan,  "#000000"  }, // infobar middle  selected {text,background,not used but cannot be empty}
-    [SchemeInfoNorm]  	= { col_gray3, col_gray1,  "#000000"  } // infobar middle  unselected {text,background,not used but cannot be empty}
+    [SchemeInfoNorm]  	= { col_gray3, col_gray1,  "#000000"  }, // infobar middle  unselected {text,background,not used but cannot be empty}
+	[SchemeWarn]		= { col_black, col_yellow, col_red },
+	[SchemeUrgent]      = { col_white, col_red,    col_red }
 };
 
 /* tagging */
@@ -74,9 +80,9 @@ static void (*bartabfloatfns[])(Monitor *) = { NULL /* , customlayoutfn */ };
 
 static const Layout layouts[] = {
 	/* symbol     arrange function */
-	{ "[]=",      tile },    /* first entry is default */
-	{ "><>",      NULL },    /* no layout function means floating behavior */
-	{ "[M]",      monocle },
+	{ "󰨝",      tile },    /* first entry is default */
+	{ "󱂬",      NULL },    /* no layout function means floating behavior */
+	{ "󰊓",      monocle },
 };
 
 /* key definitions */
