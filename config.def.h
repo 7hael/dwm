@@ -160,12 +160,12 @@ ResourcePref resources[] = {
 		// SchemeTags
 		{ "dwm.normtagfg",		 STRING,  &normtagfg },
 		{ "dwm.normtagbg",		 STRING,  &normtagbg },
-		{ "dwm.seltagbg",		 STRING,  &seltagbg },
+		{ "dwm.seltagfg",		 STRING,  &seltagfg },
 		{ "dwm.seltagbg",		 STRING,  &seltagbg },
 		// SchemeInfo
 		{ "dwm.norminfofg",		 STRING,  &norminfofg },
 		{ "dwm.norminfobg",		 STRING,  &norminfobg },
-		{ "dwm.selinfobg",		 STRING,  &selinfobg },
+		{ "dwm.selinfofg",		 STRING,  &selinfofg },
 		{ "dwm.selinfobg",		 STRING,  &selinfobg },
 		// SchemeStatus
 		{ "dwm.normstatfg",		 STRING,  &normstatfg },
